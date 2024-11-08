@@ -33,11 +33,9 @@ To run this project, you will need:
    ```
 2. Install dependencies using npm:
 
-```bash
-npm install
-npm init -y
-npm install chart.js
-```
+   ```bash
+   npm install
+   ```
 
 ### Running the Project
 
