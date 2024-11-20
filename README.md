@@ -1,5 +1,10 @@
 # Sorting Algorithm Comparison Project
 
+# Note
+
+**Report PDF file is inside the report folder**
+**if the website took too long to load try to modify the array in the main.js file from 100000 to 15000 or the opposite **
+
 ## Overview
 
 This project compares the performance of several sorting algorithms (Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort, Heap Sort) using JavaScript and visualizes the results with Chart.js. The analysis includes different input sizes, allowing users to observe how each algorithm scales in terms of efficiency.

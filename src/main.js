@@ -33,5 +33,28 @@ for (let [name, algorithm] of Object.entries(algorithms)) {
     }
   }
 }
+// Function to create the table
+function createResultsTable(results) {
+  const tableBody = document.querySelector("#resultTable tbody");
+  tableBody.innerHTML = ""; // Clear any previous data
+
+  for (let [algorithm, times] of Object.entries(results)) {
+    const row = document.createElement("tr");
+    const algorithmCell = document.createElement("td");
+    algorithmCell.textContent = algorithm;
+    row.appendChild(algorithmCell);
+
+    times.forEach((time) => {
+      const timeCell = document.createElement("td");
+      timeCell.textContent = `${time.toFixed(3)} ms`;
+      row.appendChild(timeCell);
+    });
+
+    tableBody.appendChild(row);
+  }
+}
+
+// Call the function to create the table
+createResultsTable(results);
 drawChart(results);
 export default results;
