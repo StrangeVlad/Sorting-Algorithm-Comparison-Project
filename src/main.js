@@ -18,25 +18,58 @@ const algorithms = {
   heapSort: heapSort,
 };
 
-const sizes = [0, 10, 100, 1000, 10000, 15000];
-const results = {};
+document
+  .getElementById("algorithmForm")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-for (let [name, algorithm] of Object.entries(algorithms)) {
-  results[name] = [];
-  for (let size of sizes) {
-    if (size === 0) {
-      results[name].push(0.1);
-    } else {
-      const array = generateRandomArray(size);
-      const time = await measureExecutionTime(algorithm, array);
-      results[name].push(time);
+    const maxSize = parseInt(document.getElementById("maxSize").value);
+    const selectedAlgorithms = Array.from(
+      document.getElementById("algorithms").selectedOptions
+    ).map((option) => option.value);
+
+    const results = await runAlgorithms(selectedAlgorithms, maxSize);
+
+    createResultsTable(results);
+    drawChart(results);
+  });
+
+document
+  .getElementById("runAllButton")
+  .addEventListener("click", async function () {
+    const maxSize = parseInt(document.getElementById("maxSize").value);
+    const allAlgorithms = Object.keys(algorithms);
+
+    const results = await runAlgorithms(allAlgorithms, maxSize);
+
+    createResultsTable(results);
+    drawChart(results);
+  });
+
+async function runAlgorithms(algorithmsToRun, maxSize) {
+  const sizes = [0, 10, 100, 1000, 10000, 100000].filter(
+    (size) => size <= maxSize
+  );
+  const results = {};
+
+  for (let name of algorithmsToRun) {
+    results[name] = [];
+    for (let size of sizes) {
+      if (size === 0) {
+        results[name].push(0.1);
+      } else {
+        const array = generateRandomArray(size);
+        const time = await measureExecutionTime(algorithms[name], array);
+        results[name].push(time);
+      }
     }
   }
+  return results;
 }
-// Function to create the table
+
 function createResultsTable(results) {
   const tableBody = document.querySelector("#resultTable tbody");
-  tableBody.innerHTML = ""; // Clear any previous data
+  tableBody.innerHTML = "";
 
   for (let [algorithm, times] of Object.entries(results)) {
     const row = document.createElement("tr");
@@ -53,8 +86,3 @@ function createResultsTable(results) {
     tableBody.appendChild(row);
   }
 }
-
-// Call the function to create the table
-createResultsTable(results);
-drawChart(results);
-export default results;

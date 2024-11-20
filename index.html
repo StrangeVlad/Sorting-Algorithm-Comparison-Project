@@ -9,6 +9,31 @@
   </head>
   <body>
     <h1>Sorting Algorithm Performance</h1>
+
+    <form id="algorithmForm">
+      <label for="maxSize">Choose Max Array Size:</label>
+      <select id="maxSize" name="maxSize">
+        <option value="10">10</option>
+        <option value="100">100</option>
+        <option value="1000">1000</option>
+        <option value="10000">10000</option>
+        <option value="100000">100000</option>
+      </select>
+
+      <label for="algorithms">Choose Algorithms to Run:</label>
+      <select id="algorithms" name="algorithms" multiple>
+        <option value="bubbleSort">Bubble Sort</option>
+        <option value="selectionSort">Selection Sort</option>
+        <option value="insertionSort">Insertion Sort</option>
+        <option value="mergeSort">Merge Sort</option>
+        <option value="quickSort">Quick Sort</option>
+        <option value="heapSort">Heap Sort</option>
+      </select>
+
+      <button type="submit">Run Selected Algorithms</button>
+      <button type="button" id="runAllButton">Run All Algorithms</button>
+    </form>
+
     <canvas id="chart" width="800" height="400"></canvas>
     <table id="resultTable">
       <thead>

@@ -1,3 +1,5 @@
+let chartInstance = null; // Store the chart instance globally
+
 function drawChart(results) {
   const labels = [0, 10, 100, 1000, 10000, 100000];
   const colors = [
@@ -9,17 +11,22 @@ function drawChart(results) {
     "#FF9F40", // Selection Sort
   ];
 
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
   const datasets = Object.keys(results).map((algorithm, index) => ({
     label: algorithm,
     data: results[algorithm],
     borderColor: colors[index % colors.length],
     fill: false,
     borderWidth: 2,
-    tension: 0.3, 
+    tension: 0.3,
     pointRadius: 3,
   }));
 
-  new Chart(document.getElementById("chart"), {
+  const ctx = document.getElementById("chart").getContext("2d");
+  chartInstance = new Chart(ctx, {
     type: "line",
     data: { labels, datasets },
     options: {
