@@ -2,8 +2,9 @@
 
 # Note
 
+**You can statrt directly the test using Live Server Vscode Extension**
 **Report PDF file is inside the report folder**
-**if the website took too long to load try to modify the array in the main.js file from 100000 to 15000 or the opposite **
+**if the website took too long to load try to modify the array in the main.js file from 100000 to 15000 or the opposite**
 
 ## Overview
 
